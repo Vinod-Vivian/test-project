@@ -1,0 +1,31 @@
+name: Deploying
+
+on:
+  workflow_dispatch
+
+jobs:
+  Dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    
+    steps:
+      - name: Deploy
+        run: echo "Deployed on Dev environment"
+      
+      
+  
+  Stage:
+    runs-on: ubuntu-latest
+    environment: stage
+    needs: dev
+    steps:
+      - name: Deploy
+        run: echo "Deployed on Staging environment"
+  
+  Prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: stage
+    steps:
+      - name: Deploy
+        run: echo "Deployed on Production environment"
